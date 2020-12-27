@@ -47,4 +47,9 @@ public class StudentServiceImpl implements StudentService {
     public Integer deleteCourse(int stuNum, int courseNum) {
         return studentDao.deleteCourse(stuNum, courseNum);
     }
+
+    @Override
+    public Integer updateCourseSelectedMembers(int courseNum){
+        return studentDao.updateCourseSelectedMembers(courseNum);
+    }
 }

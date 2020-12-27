@@ -57,9 +57,17 @@ public interface StudentService {
 
     /**
      * 删除选课
+     *
      * @param stuNum
      * @param courseNum
      * @return
      */
     Integer deleteCourse(int stuNum, int courseNum);
+
+    /**
+     * 通过课程编号更新已选课程
+     * @param courseNum
+     * @return
+     */
+    Integer updateCourseSelectedMembers(int courseNum);
 }

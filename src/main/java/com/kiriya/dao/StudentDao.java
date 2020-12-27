@@ -58,4 +58,11 @@ public interface StudentDao {
      * @return 影响数据条数
      */
     Integer deleteCourse(int stuNum, int courseNum);
+
+    /**
+     * 通过课程编号更新已选课程
+     * @param courseNum 课程编号
+     * @return 影响数据条数
+     */
+    Integer updateCourseSelectedMembers(int courseNum);
 }

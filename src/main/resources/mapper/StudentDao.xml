@@ -50,4 +50,9 @@
     <delete id="deleteCourse" parameterType="integer">
         DELETE FROM course_selection WHERE stu_num = #{param1} AND course_num = #{param2}
     </delete>
+    <update id="updateCourseSelectedMembers" parameterType="integer">
+        UPDATE course_open o
+        SET select_members = ( SELECT count( * ) FROM course_selection s WHERE s.course_num = #{courseNum} )
+        WHERE o.num = #{courseNum}
+    </update>
 </mapper>

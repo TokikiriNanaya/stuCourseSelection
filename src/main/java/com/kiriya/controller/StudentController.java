@@ -95,6 +95,12 @@ public class StudentController {
     }
 
 
+    /**
+     * 选课
+     * @param courseNums
+     * @param session
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/selectCourses")
     public AjaxResult selectCourses(String courseNums, HttpSession session) {
@@ -108,6 +114,7 @@ public class StudentController {
                 //判断课程是否已选
                 if (!studentService.ifSelected(stuNum, courseNum)) {
                     studentService.selectCourse(stuNum, courseNum);
+                    studentService.updateCourseSelectedMembers(courseNum);
                 }
             }
             return new AjaxResult().setSuccess(true).setMessage("选课成功！");
@@ -115,6 +122,13 @@ public class StudentController {
             return new AjaxResult().setSuccess(false).setMessage(e.getMessage());
         }
     }
+
+    /**
+     * 取消选课
+     * @param courseNums
+     * @param session
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteCourses")
     public AjaxResult deleteCourses(String courseNums, HttpSession session) {
@@ -128,6 +142,7 @@ public class StudentController {
                 //判断课程是否已选
                 if (studentService.ifSelected(stuNum, courseNum)) {
                     studentService.deleteCourse(stuNum, courseNum);
+                    studentService.updateCourseSelectedMembers(courseNum);
                 }
             }
             return new AjaxResult().setSuccess(true).setMessage("取消选课成功！");
