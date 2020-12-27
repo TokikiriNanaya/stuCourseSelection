@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiriya.dao.StudentDao">
+    <select id="getStuById" resultType="Student">
+        select * from student where num=#{num}
+    </select>
+    <select id="getAllCourse" resultType="java.util.HashMap">
+        SELECT
+			a.num AS num,
+			a.name AS name,
+			a.describe,
+			t.name AS teacher_name,
+			a.credit,
+			a.class_hours,
+			o.classroom,
+			o.start_time,
+			o.max_members,
+			o.select_members
+		FROM
+			course_all a
+			INNER JOIN course_open o ON a.num = o.num
+			INNER JOIN teacher t ON o.teacher_num = t.num
+    </select>
+    <select id="getMyCourse" resultType="java.util.HashMap">
+		SELECT
+			a.num AS num,
+			a.name AS name,
+			a.describe,
+			t.name AS teacher_name,
+			a.credit,
+			a.class_hours,
+			o.classroom,
+			o.start_time,
+			o.max_members,
+			o.select_members
+		FROM
+			course_selection s
+			INNER JOIN course_all a ON s.course_num = a.num
+			INNER JOIN course_open o ON s.course_num = o.num
+			INNER JOIN teacher t ON o.teacher_num = t.num
+			AND s.stu_num=#{num}
+	</select>
+    <insert id="selectCourse" parameterType="integer">
+        INSERT INTO course_selection (stu_num, course_num) VALUES (#{param1}, #{param2})
+    </insert>
+    <select id="ifSelected" parameterType="integer" resultType="integer">
+        SELECT count( * )  FROM course_selection WHERE stu_num = #{param1} AND course_num = #{param2}
+    </select>
+    <delete id="deleteCourse" parameterType="integer">
+        DELETE FROM course_selection WHERE stu_num = #{param1} AND course_num = #{param2}
+    </delete>
+</mapper>
