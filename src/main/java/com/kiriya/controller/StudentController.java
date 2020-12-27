@@ -3,7 +3,6 @@ package com.kiriya.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kiriya.dao.StudentDao;
 import com.kiriya.entity.Student;
 import com.kiriya.service.StudentService;
 import com.kiriya.util.AjaxResult;
@@ -29,7 +28,7 @@ public class StudentController {
     /**
      * 登录
      *
-     * @return
+     * @return AjaxResult
      */
     @ResponseBody
     @RequestMapping("/login")
@@ -84,8 +83,6 @@ public class StudentController {
 
     /**
      * 注销
-     *
-     * @param session
      */
     @ResponseBody
     @RequestMapping("/logOut")
@@ -97,6 +94,7 @@ public class StudentController {
 
     /**
      * 选课
+     *
      * @param courseNums
      * @param session
      * @return
@@ -111,8 +109,9 @@ public class StudentController {
             int stuNum = student.getNum();
             for (int i = 0; i < jsonArray.size(); i++) {
                 int courseNum = (int) jsonArray.get(i);
-                //判断课程是否已选
-                if (!studentService.ifSelected(stuNum, courseNum)) {
+                //判断课程是否已选 是否满人
+                if (!studentService.ifCourseSelected(stuNum, courseNum)
+                        && !studentService.ifCourseMembersLimit(courseNum)) {
                     studentService.selectCourse(stuNum, courseNum);
                     studentService.updateCourseSelectedMembers(courseNum);
                 }
@@ -125,6 +124,7 @@ public class StudentController {
 
     /**
      * 取消选课
+     *
      * @param courseNums
      * @param session
      * @return
@@ -140,7 +140,7 @@ public class StudentController {
             for (int i = 0; i < jsonArray.size(); i++) {
                 int courseNum = (int) jsonArray.get(i);
                 //判断课程是否已选
-                if (studentService.ifSelected(stuNum, courseNum)) {
+                if (studentService.ifCourseSelected(stuNum, courseNum)) {
                     studentService.deleteCourse(stuNum, courseNum);
                     studentService.updateCourseSelectedMembers(courseNum);
                 }

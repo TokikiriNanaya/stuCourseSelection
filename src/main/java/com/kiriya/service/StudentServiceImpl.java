@@ -39,8 +39,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Boolean ifSelected(int stuNum, int courseNum) {
-        return studentDao.ifSelected(stuNum, courseNum) == 1;
+    public Boolean ifCourseSelected(int stuNum, int courseNum) {
+        return studentDao.ifCourseSelected(stuNum, courseNum) == 1;
+    }
+
+    @Override
+    public Boolean ifCourseMembersLimit(int courseNum) {
+        return studentDao.ifCourseMembersLimit(courseNum) == 0;
     }
 
     @Override

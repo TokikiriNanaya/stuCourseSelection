@@ -44,7 +44,7 @@
     <insert id="selectCourse" parameterType="integer">
         INSERT INTO course_selection (stu_num, course_num) VALUES (#{param1}, #{param2})
     </insert>
-    <select id="ifSelected" parameterType="integer" resultType="integer">
+    <select id="ifCourseSelected" parameterType="integer" resultType="integer">
         SELECT count( * )  FROM course_selection WHERE stu_num = #{param1} AND course_num = #{param2}
     </select>
     <delete id="deleteCourse" parameterType="integer">
@@ -55,4 +55,10 @@
         SET select_members = ( SELECT count( * ) FROM course_selection s WHERE s.course_num = #{courseNum} )
         WHERE o.num = #{courseNum}
     </update>
+    <select id="ifCourseMembersLimit" parameterType="integer" resultType="integer">
+        SELECT
+		( SELECT max_members FROM course_open WHERE num = #{courseNum} )
+		 >
+		( SELECT select_members FROM course_open WHERE num = #{courseNum} )
+    </select>
 </mapper>

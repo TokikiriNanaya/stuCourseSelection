@@ -53,7 +53,14 @@ public interface StudentService {
      * @param courseNum
      * @return
      */
-    Boolean ifSelected(int stuNum, int courseNum);
+    Boolean ifCourseSelected(int stuNum, int courseNum);
+
+    /**
+     * 查询是否课程是否满人
+     * @param courseNum
+     * @return
+     */
+    Boolean ifCourseMembersLimit(int courseNum);
 
     /**
      * 删除选课

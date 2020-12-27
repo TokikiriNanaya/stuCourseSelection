@@ -56,8 +56,21 @@
                 {field: 'max_members', title: '最大人数', width: 100, align: 'center'},
                 {field: 'select_members', title: '已选人数', width: 100, align: 'center'}
             ]],
+            onClickRow: function (rowIndex, rowData) {
+                $(this).datagrid('unselectRow', rowIndex);
+            },
             onLoadSuccess: function (data) {
-
+                // if (data.rows.length > 0) {
+                //     for (var i = 0; i < data.rows.length; i++) {
+                //         var courseNum=data.rows[i].num;
+                //         $.post()("", {"courseNums": courseNum}, function (result) {
+                //
+                //         });
+                //         if (data.rows[i] == 1) {
+                //             $("input[type='checkbox']")[i + 1].disabled = true;
+                //         }
+                //     }
+                // }
             }
         });
     })
@@ -103,5 +116,7 @@
             });
         }
     }];
+
+
 </script>
 </html>

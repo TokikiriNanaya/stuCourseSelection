@@ -49,7 +49,7 @@ public interface StudentDao {
      * @param courseNum 课程编号
      * @return 匹配个数 1为已选 0为未选
      */
-    Integer ifSelected(int stuNum, int courseNum);
+    Integer ifCourseSelected(int stuNum, int courseNum);
 
     /**
      * 删除选课
@@ -65,4 +65,11 @@ public interface StudentDao {
      * @return 影响数据条数
      */
     Integer updateCourseSelectedMembers(int courseNum);
+
+    /**
+     * 查询是否课程是否满人 0为满 1为未满
+     * @param courseNum
+     * @return 0/1
+     */
+    Integer ifCourseMembersLimit(int courseNum);
 }
