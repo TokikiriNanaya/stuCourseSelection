@@ -57,7 +57,7 @@
                 {field: 'select_members', title: '已选人数', width: 100, align: 'center'}
             ]],
             onClickRow: function (rowIndex, rowData) {
-                $(this).datagrid('unselectRow', rowIndex);
+                // $(this).datagrid('unselectRow', rowIndex);
             },
             onLoadSuccess: function (data) {
                 // if (data.rows.length > 0) {

@@ -12,7 +12,7 @@
     <jsp:include page="/static/js/common.jsp"/>
 </head>
 <body>
-<h1>欢迎进入学生选课系统</h1>
+<h1 style="text-align: center;margin: auto">欢迎进入学生选课系统</h1>
 
 </body>
 </html>

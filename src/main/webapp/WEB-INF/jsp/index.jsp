@@ -33,16 +33,14 @@
     </div>
     <%--    main内容--%>
     <div data-options="region:'center',title:''" style="padding:5px;background:#eee;">
-        <iframe width="100%" height="100%" src="mainPage" name="mainFrame"></iframe>
+        <iframe id="mainFrame" width="100%" height="100%" src="mainPage" name="mainFrame"></iframe>
     </div>
     <%--    footer--%>
     <div data-options="region:'south'" style="height:50px;overflow: hidden">
         <div style="padding: 15px">
-            <span>欢迎您：[<%=student.getNum()%>]</span>
-            <a class="a_link" href="studentMsgPage" target="mainFrame"><%=student.getName()%>
+            <span>欢迎您：</span>
+            <a class="a_link" href="studentMsgPage" target="mainFrame">[<%=student.getNum()%>] <%=student.getName()%>
             </a>
-            <span> | </span>
-            <a class="a_link" href="javascript:logOut()">注销</a>
         </div>
 
     </div>
