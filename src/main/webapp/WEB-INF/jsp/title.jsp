@@ -25,14 +25,14 @@
     }
 
     #title-table {
-        background-color: #0c7cd5;
+        background-color: #2086ce;
         width: 100%;
         height: 80%;
         /*border-bottom: #a6d9fd solid 15px;*/
     }
 
     .title_option {
-        color: #0c7cd5;
+        color: #2086ce;
         font-weight: bold;
         text-decoration: none;
         font-size: small;

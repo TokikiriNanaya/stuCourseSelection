@@ -11,17 +11,33 @@
     <title>登录</title>
     <jsp:include page="/static/js/common.jsp"/>
 </head>
+<style>
+    body{
+        background-image: url("${pageContext.request.contextPath}/static/img/background.jpg");
+    }
+</style>
 <body>
-<div style="width: 400px;margin: 250px auto 0 auto">
-    <div class="easyui-panel" style="width:400px;padding:30px 60px">
+<div style="width: 400px;margin: 200px auto">
+    <h1 style="text-align: center;margin: 35px auto" >学生选课系统</h1>
+    <div class="easyui-panel" style="width:400px;padding:30px 60px;
+    background-color: #e7e7e7;border-radius: 24px;">
         <form id="loginForm">
             <div style="margin-bottom:20px">
                 <input id="username" name="username" class="easyui-numberbox" label="学号:" labelPosition="top"
-                       data-options="required:true" style="width:100%;">
+                        style="width:100%;" placeholder="请输入学号/工号">
             </div>
             <div style="margin-bottom:20px">
                 <input id="password" name="password" class="easyui-passwordbox" label="密码:" labelPosition="top"
-                       data-options="required:true" style="width:100%;">
+                        style="width:100%;"  placeholder="请输入密码">
+            </div>
+
+            <div style="margin-bottom:20px">
+                <select label="登陆方式:" id="character" class="easyui-combobox" name="character" style="width:100%;"
+                        data-options="panelHeight:100">
+                    <option value="student">学生</option>
+                    <option value="teacher">教师</option>
+                    <option value="admin">管理员</option>
+                </select>
             </div>
             <div style="margin-bottom:20px">
                 <div>
@@ -56,6 +72,18 @@
             })
         }
     }
+
+    $(function(){
+        // easyui placeholder
+        window.onload = $(".easyui-numberbox,.easyui-passwordbox").each(function(i){
+            var span = $(this).siblings("span")[0];
+            var targetInput = $(span).find("input:first");
+            if(targetInput){
+                $(targetInput).attr("placeholder", $(this).attr("placeholder"));
+            }
+
+        });
+    });
 </script>
 </body>
 </html>
